@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Bitlinux | Web Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #ffffff;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        :root {
+            --primary-blue: #3b82f6;
+            --primary-yellow: #fbbf24;
+            --dark-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #e2e8f0; }
+        ::-webkit-scrollbar-thumb { background: var(--primary-blue); border-radius: 10px; }
+
+        /* NAVBAR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 8%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            padding: 12px 8%;
+            box-shadow: 0 4px 25px rgba(0,0,0,0.1);
+        }
+
+        nav h2 {
+            color: var(--primary-blue);
+            font-size: 28px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        nav h2 i {
+            color: var(--primary-yellow);
+            margin-right: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: 0.3s;
+            position: relative;
+            cursor: pointer;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary-yellow);
+            transition: 0.3s;
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            width: 100%;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--primary-blue);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 60px;
+            padding: 80px 8%;
+            min-height: auto;
+            background: linear-gradient(135deg, #ffffff 0%, #fef9e6 100%);
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .hero-text h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-dark);
+        }
+
+        .hero-text span {
+            color: var(--primary-blue);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-text p {
+            margin: 15px 0;
+            color: var(--text-light);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .hero-text .location {
+            color: var(--primary-blue);
+            font-weight: 500;
+        }
+
+        .location-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+            margin-top: 5px;
+        }
+
+        .location-link:hover {
+            color: #2563eb;
+            transform: translateX(3px);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .profile {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            border: 5px solid var(--primary-yellow);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-yellow));
+            transition: 0.3s;
+            border-radius: 25px;
+        }
+
+        .profile:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(59, 130, 246, 0.25);
+        }
+
+        .profile img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .btn {
+            margin-top: 25px;
+            padding: 12px 32px;
+            background: var(--primary-blue);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            color: white;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            background: #2563eb;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            margin-left: 12px;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 80px 8%;
+            text-align: center;
+        }
+
+        section h2 {
+            font-size: 42px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-yellow);
+            border-radius: 2px;
+        }
+
+        /* ABOUT SECTION */
+        #about {
+            background: var(--dark-bg);
+            border-radius: 30px;
+            margin: 20px 8%;
+            padding: 60px;
+        }
+
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 20px auto;
+            font-size: 18px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .personal-details {
+            max-width: 600px;
+            margin: 30px auto 0;
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-item:last-child {
+            border-bottom: none;
+        }
+
+        .detail-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            font-size: 20px;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .detail-value a {
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .experience-badges {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .exp-badge {
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .exp-badge i {
+            color: var(--primary-yellow);
+            font-size: 20px;
+        }
+
+        .exp-badge span {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .exp-badge small {
+            color: var(--text-light);
+            font-size: 12px;
+        }
+
+        /* SKILLS SECTION */
+        .skills-container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .skill {
+            margin: 30px 0;
+            text-align: left;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.5s ease;
+        }
+
+        .skill.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-name i {
+            color: var(--primary-blue);
+            font-size: 20px;
+        }
+
+        .bar {
+            background: #e2e8f0;
+            height: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress {
+            height: 12px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-yellow));
+            border-radius: 10px;
+            width: 0%;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* PROJECTS CARDS */
+        .project-filters {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 24px;
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            border-radius: 50px;
+            color: var(--primary-blue);
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #e2e8f0;
+            text-align: center;
+            cursor: pointer;
+            color: var(--text-dark);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-decoration: none;
+            display: block;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary-yellow);
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .card i {
+            font-size: 48px;
+            color: var(--primary-yellow);
+            margin-bottom: 20px;
+        }
+
+        /* CONTACT SECTION */
+        .contact-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+            border: 1px solid #e2e8f0;
+        }
+
+        .input-group {
+            position: relative;
+            margin: 20px 0;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 15px 20px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: var(--text-dark);
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+        }
+
+        /* Stats Container */
+        #statsContainer {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            color: #3b82f6;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 35px;
+            background: var(--dark-bg);
+            margin-top: 50px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        footer p {
+            color: var(--text-light);
+        }
+
+        /* Floating Buttons */
+        .whatsapp, .phone {
+            position: fixed;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            text-decoration: none;
+            transition: 0.3s;
+            z-index: 999;
+            cursor: pointer;
+        }
+
+        .whatsapp {
+            bottom: 25px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .phone {
+            bottom: 95px;
+            background: linear-gradient(135deg, var(--primary-blue), #2563eb);
+            box-shadow: 0 5px 20px rgba(59, 130, 246, 0.4);
+        }
+
+        .whatsapp:hover, .phone:hover {
+            transform: scale(1.1);
+        }
+
+        .typing-text {
+            border-right: 3px solid var(--primary-yellow);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { border-color: transparent; }
+        }
+
+        .toast-message {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: white;
+            color: var(--text-dark);
+            padding: 15px 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--primary-blue);
+            z-index: 2000;
+            transform: translateX(400px);
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .toast-message.show {
+            transform: translateX(0);
+        }
+
+        #dynamicQuote {
+            font-style: italic;
+            color: var(--primary-blue);
+            margin: 15px 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Loading */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 50px 5%;
+                gap: 40px;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                text-align: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 42px;
+            }
+            
+            .hero-image {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .profile {
+                max-width: 320px;
+            }
+            
+            .button-group {
+                justify-content: center;
+            }
+            
+            .typing-text {
+                white-space: normal;
+                border-right: none;
+                animation: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px 5%;
+            }
+            
+            nav ul {
+                gap: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-text h1 {
+                font-size: 32px;
+            }
+            
+            section h2 {
+                font-size: 28px;
+            }
+            
+            #about {
+                margin: 20px 5%;
+                padding: 40px 25px;
+            }
+            
+            .profile {
+                max-width: 280px;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .projects {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                padding: 30px 20px;
+            }
+            
+            .whatsapp, .phone {
+                width: 48px;
+                height: 48px;
+                font-size: 24px;
+            }
+            
+            .phone {
+                bottom: 85px;
+            }
+            
+            .personal-details {
+                padding: 20px;
+            }
+            
+            .detail-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            
+            .detail-icon {
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 28px;
+            }
+            
+            .hero-text p {
+                font-size: 14px;
+            }
+            
+            .profile {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .button-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .btn-outline {
+                margin-left: 0;
+            }
+            
+            .stat-number {
+                font-size: 24px;
+            }
+            
+            .experience-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="loading-container">
+            <i class="fas fa-spinner fa-spin"></i> Loading...
+        </div>
+    </div>
+
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+
+    <script>
+        const { useState, useEffect, useRef, useCallback } = React;
+
+        // Data Store
+        const portfolioData = {
+            displayName: "Carlos De Uganda",
+            about: "I'm a passionate self-taught programmer, trader, and tech enthusiast from Luzira, Kampala, Uganda. With 2 years of coding experience and 3 years in graphic design, I've dedicated myself to mastering web development, digital creativity, and emerging technologies. My journey as a self-taught developer and trader has taught me resilience, analytical thinking, problem-solving, and the power of continuous learning. I specialize in building responsive websites, creating stunning visual designs, trading digital assets, and helping businesses establish their strong online presence. I'm deeply passionate about coding, trading, and staying ahead of new technology trends. What truly drives me is sharing knowledge. I love teaching others, empowering youth in my community with digital skills, and creating solutions that make a real difference. Being self-taught has given me a unique ability to break down complex concepts and help others learn effectively.",
+            stats: [
+                { value: "10+", label: "Projects Completed" },
+                { value: "4+", label: "Happy Clients" },
+                { value: "2+", label: "Years Coding" },
+                { value: "3+", label: "Years Design" }
+            ],
+            quotes: [
+                "Code is poetry in motion",
+                "Building dreams one line at a time",
+                "Empowering youth through technology",
+                "Creativity meets functionality",
+                "Self-taught, self-motivated, self-made"
+            ],
+            skills: [
+                { name: "HTML5", icon: "fab fa-html5", level: 100 },
+                { name: "CSS3", icon: "fab fa-css3-alt", level: 100 },
+                { name: "JavaScript", icon: "fab fa-js", level: 85 },
+                { name: "Php", icon: "fab fa-php", level: 65 },
+                { name: "Graphic Design", icon: "fas fa-palette", level: 90 },
+                { name: "Email Marketing", icon: "fas fa-envelope", level: 80 },
+                { name: "Social Media Management", icon: "fas fa-chart-line", level: 82 }
+            ],
+            projects: [
+                { id: 1, name: "Spending Tracker", category: "web", icon: "fas fa-chart-pie", desc: "Track expenses and export data to spreadsheets", link: "spending-tracker.html" },
+                { id: 2, name: "JavaScript Calculator", category: "web", icon: "fas fa-calculator", desc: "Interactive calculator with advanced functions", link: "calculator.html" },
+                { id: 3, name: "Digital Clock", category: "web", icon: "fas fa-clock", desc: "Clock with moon phases and timezone settings", link: "clock.html" },
+                { id: 4, name: "Solar System", category: "3d", icon: "fas fa-solar-panel", desc: "3D visualization of planets and orbits", link: "solarsystem.html" },
+                { id: 5, name: "Digital Compass", category: "tool", icon: "fas fa-compass", desc: "Magnetic north detection compass", link: "compass.html" },
+                { id: 6, name: "Unit Converter", category: "tool", icon: "fas fa-exchange-alt", desc: "Convert between metric and imperial units", link: "converter.html" },
+                { id: 7, name: "Weather App", category: "web", icon: "fas fa-cloud-sun", desc: "Real-time weather forecasts and radar maps", link: "weather-app.html" },
+                { id: 8, name: "Download Hub", category: "tool", icon: "fas fa-download", desc: "Third-party downloads manager and resources", link: "download-hub.html" },
+                { id: 9, name: "DocuShare", category: "web", icon: "fas fa-file-alt", desc: "Secure document sharing and collaboration platform", link: "docushare.html" },
+                { id: 10, name: "Daily Devotion", category: "web", icon: "fas fa-bible", desc: "Christian scripture devotion and prayer guide", link: "daily-devotion.html" }
+            ]
+        };
+
+        // Toast Component
+        const Toast = ({ message, type, onClose }) => {
+            useEffect(() => {
+                const timer = setTimeout(() => {
+                    onClose();
+                }, 4000);
+                return () => clearTimeout(timer);
+            }, [onClose]);
+
+            return React.createElement(
+                'div',
+                { 
+                    className: `toast-message show`,
+                    style: { borderLeftColor: type === 'success' ? '#3b82f6' : '#ef4444' }
+                },
+                React.createElement('i', { className: `fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}` }),
+                ' ' + message
+            );
+        };
+
+        // Navbar Component
+        const Navbar = ({ activeSection, onNavClick }) => {
+            const [scrolled, setScrolled] = useState(false);
+
+            useEffect(() => {
+                const handleScroll = () => {
+                    setScrolled(window.scrollY > 50);
+                };
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const sections = [
+                { id: 'home', label: 'Home' },
+                { id: 'about', label: 'About' },
+                { id: 'skills', label: 'Skills' },
+                { id: 'projects', label: 'Projects' },
+                { id: 'contact', label: 'Contact' }
+            ];
+
+            return React.createElement(
+                'nav',
+                { className: scrolled ? 'scrolled' : '' },
+                React.createElement(
+                    'h2',
+                    null,
+                    React.createElement('i', { className: 'fas fa-laptop-code' }),
+                    ' Bitlinux'
+                ),
+                React.createElement(
+                    'ul',
+                    null,
+                    sections.map(section => 
+                        React.createElement(
+                            'li',
+                            { key: section.id },
+                            React.createElement(
+                                'a',
+                                {
+                                    className: activeSection === section.id ? 'active' : '',
+                                    onClick: () => onNavClick(section.id)
+                                },
+                                section.label
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        // Hero Component
+        const Hero = ({ name, quotes, onViewWork, onContact }) => {
+            const [displayName, setDisplayName] = useState('');
+            const [quoteIndex, setQuoteIndex] = useState(0);
+            const [isTypingComplete, setIsTypingComplete] = useState(false);
+
+            useEffect(() => {
+                let i = 0;
+                const typeInterval = setInterval(() => {
+                    if (i <= name.length) {
+                        setDisplayName(name.substring(0, i));
+                        i++;
+                    } else {
+                        clearInterval(typeInterval);
+                        setIsTypingComplete(true);
+                    }
+                }, 80);
+                return () => clearInterval(typeInterval);
+            }, [name]);
+
+            useEffect(() => {
+                const quoteInterval = setInterval(() => {
+                    setQuoteIndex((prev) => (prev + 1) % quotes.length);
+                }, 5000);
+                return () => clearInterval(quoteInterval);
+            }, [quotes.length]);
+
+            return React.createElement(
+                'div',
+                { className: 'hero', id: 'home' },
+                React.createElement(
+                    'div',
+                    { className: 'hero-text' },
+                    React.createElement(
+                        'h1',
+                        null,
+                        "Hello, I'm ",
+                        React.createElement(
+                            'span',
+                            { className: isTypingComplete ? '' : 'typing-text' },
+                            displayName
+                        )
+                    ),
+                    React.createElement(
+                        'p',
+                        { className: 'location' },
+                        React.createElement('i', { className: 'fas fa-map-marker-alt', style: { color: '#3b82f6' } }),
+                        ' Web Developer | Graphic Designer | Email Marketer | Youth Empowerment Advocate'
+                    ),
+                    React.createElement(
+                        'a',
+                        { 
+                            href: 'https://maps.google.com/?q=Luzira+Kampala+Uganda', 
+                            target: '_blank', 
+                            className: 'location-link' 
+                        },
+                        React.createElement('i', { className: 'fas fa-location-dot' }),
+                        ' Luzira, Kampala, Uganda',
+                        React.createElement('i', { className: 'fas fa-external-link-alt', style: { fontSize: '12px' } })
+                    ),
+                    React.createElement(
+                        'p',
+                        { id: 'dynamicQuote' },
+                        React.createElement('i', { className: 'fas fa-quote-left' }),
+                        ' ' + quotes[quoteIndex]
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'button-group' },
+                        React.createElement(
+                            'button',
+                            { className: 'btn', onClick: onViewWork },
+                            React.createElement('i', { className: 'fas fa-arrow-down' }),
+                            ' View My Work'
+                        ),
+                        React.createElement(
+                            'button',
+                            { className: 'btn btn-outline', onClick: onContact },
+                            React.createElement('i', { className: 'fas fa-envelope' }),
+                            ' Contact Me'
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'hero-image' },
+                    React.createElement(
+                        'div',
+                        { className: 'profile' },
+                        React.createElement('img', { 
+                            src: 'images/FB_IMG_1776016709098.jpg', 
+                            alt: 'Carlos De Uganda - Web Developer',
+                            onError: (e) => { e.target.src = 'https://via.placeholder.com/400x400?text=Carlos'; }
+                        })
+                    )
+                )
+            );
+        };
+
+        // About Component
+        const About = ({ about, stats, details }) => {
+            return React.createElement(
+                'section',
+                { id: 'about' },
+                React.createElement('h2', null, 'About Me'),
+                React.createElement('p', null, about),
+                React.createElement(
+                    'div',
+                    { className: 'personal-details' },
+                    details.map((detail, index) => 
+                        React.createElement(
+                            'div',
+                            { className: 'detail-item', key: index },
+                            React.createElement(
+                                'div',
+                                { className: 'detail-icon' },
+                                React.createElement('i', { className: detail.icon })
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'detail-content' },
+                                React.createElement('div', { className: 'detail-label' }, detail.label),
+                                React.createElement('div', { className: 'detail-value' }, detail.value)
+                            )
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'experience-badges' },
+                    React.createElement(
+                        'div',
+                        { className: 'exp-badge' },
+                        React.createElement('i', { className: 'fas fa-code' }),
+                        React.createElement('span', null, '1+ Year'),
+                        React.createElement('small', null, 'Coding Experience')
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'exp-badge' },
+                        React.createElement('i', { className: 'fas fa-palette' }),
+                        React.createElement('span', null, '2+ Years'),
+                        React.createElement('small', null, 'Graphic Design')
+                    ),
+                    React.createElement(
+                        'div',
+                        { className: 'exp-badge' },
+                        React.createElement('i', { className: 'fas fa-rocket' }),
+                        React.createElement('span', null, 'Self-Taught'),
+                        React.createElement('small', null, 'Developer')
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { id: 'statsContainer' },
+                    stats.map((stat, index) => 
+                        React.createElement(
+                            'div',
+                            { className: 'stat-item', key: index },
+                            React.createElement('div', { className: 'stat-number' }, stat.value),
+                            React.createElement('div', { className: 'stat-label' }, stat.label)
+                        )
+                    )
+                )
+            );
+        };
+
+        // Skills Component
+        const Skills = ({ skills }) => {
+            const [visibleSkills, setVisibleSkills] = useState([]);
+
+            useEffect(() => {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const index = parseInt(entry.target.dataset.index);
+                            setVisibleSkills(prev => [...new Set([...prev, index])]);
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                const skillElements = document.querySelectorAll('.skill');
+                skillElements.forEach(el => observer.observe(el));
+
+                return () => observer.disconnect();
+            }, []);
+
+            return React.createElement(
+                'section',
+                { id: 'skills' },
+                React.createElement('h2', null, 'My Skills'),
+                React.createElement(
+                    'div',
+                    { className: 'skills-container' },
+                    skills.map((skill, index) => 
+                        React.createElement(
+                            'div',
+                            { 
+                                className: `skill ${visibleSkills.includes(index) ? 'visible' : ''}`,
+                                'data-index': index,
+                                key: index
+                            },
+                            React.createElement(
+                                'div',
+                                { className: 'skill-header' },
+                                React.createElement(
+                                    'span',
+                                    { className: 'skill-name' },
+                                    React.createElement('i', { className: skill.icon }),
+                                    ' ' + skill.name
+                                ),
+                                React.createElement('span', null, skill.level + '%')
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'bar' },
+                                React.createElement('div', { 
+                                    className: 'progress', 
+                                    style: { width: visibleSkills.includes(index) ? skill.level + '%' : '0%' }
+                                })
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        // Projects Component
+        const Projects = ({ projects }) => {
+            const [filter, setFilter] = useState('all');
+            const categories = ['all', ...new Set(projects.map(p => p.category))];
+            const categoryNames = { all: 'All Projects', web: 'Web Apps', '3d': '3D & Visual', tool: 'Tools' };
+
+            const filteredProjects = filter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === filter);
+
+            return React.createElement(
+                'section',
+                { id: 'projects' },
+                React.createElement('h2', null, 'Featured Projects'),
+                React.createElement(
+                    'div',
+                    { className: 'project-filters' },
+                    categories.map(cat => 
+                        React.createElement(
+                            'button',
+                            {
+                                className: `filter-btn ${filter === cat ? 'active' : ''}`,
+                                onClick: () => setFilter(cat),
+                                key: cat
+                            },
+                            categoryNames[cat] || cat
+                        )
+                    )
+                ),
+                React.createElement(
+                    'div',
+                    { className: 'projects' },
+                    filteredProjects.map(project => 
+                        React.createElement(
+                            'a',
+                            { 
+                                href: project.link, 
+                                className: 'card',
+                                key: project.id
+                            },
+                            React.createElement('i', { className: project.icon }),
+                            React.createElement('h3', null, project.name),
+                            React.createElement('p', null, project.desc)
+                        )
+                    )
+                )
+            );
+        };
+
+        // Contact Component
+        const Contact = ({ onSubmit }) => {
+            const [name, setName] = useState('');
+            const [email, setEmail] = useState('');
+            const [message, setMessage] = useState('');
+            const [isSubmitting, setIsSubmitting] = useState(false);
+            const [toast, setToast] = useState(null);
+
+            const handleSubmit = (e) => {
+                e.preventDefault();
+                if (!name || !email || !message) {
+                    setToast({ message: 'Please fill in all fields', type: 'error' });
+                    return;
+                }
+
+                setIsSubmitting(true);
+                setTimeout(() => {
+                    setIsSubmitting(false);
+                    setToast({ 
+                        message: `Thanks ${name}! Message sent successfully. I'll reply soon.`, 
+                        type: 'success' 
+                    });
+                    setName('');
+                    setEmail('');
+                    setMessage('');
+                    if (onSubmit) onSubmit({ name, email, message });
+                }, 1500);
+            };
+
+            return React.createElement(
+                React.Fragment,
+                null,
+                toast && React.createElement(Toast, {
+                    message: toast.message,
+                    type: toast.type,
+                    onClose: () => setToast(null)
+                }),
+                React.createElement(
+                    'section',
+                    { id: 'contact' },
+                    React.createElement('h2', null, 'Get In Touch'),
+                    React.createElement(
+                        'div',
+                        { className: 'contact-container' },
+                        React.createElement(
+                            'form',
+                            { onSubmit: handleSubmit },
+                            React.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                React.createElement('input', {
+                                    type: 'text',
+                                    placeholder: 'Your Name',
+                                    value: name,
+                                    onChange: (e) => setName(e.target.value),
+                                    required: true
+                                })
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                React.createElement('input', {
+                                    type: 'email',
+                                    placeholder: 'Your Email',
+                                    value: email,
+                                    onChange: (e) => setEmail(e.target.value),
+                                    required: true
+                                })
+                            ),
+                            React.createElement(
+                                'div',
+                                { className: 'input-group' },
+                                React.createElement('textarea', {
+                                    rows: '5',
+                                    placeholder: 'Your Message',
+                                    value: message,
+                                    onChange: (e) => setMessage(e.target.value),
+                                    required: true
+                                })
+                            ),
+                            React.createElement(
+                                'button',
+                                { 
+                                    type: 'submit', 
+                                    className: 'btn contact-btn',
+                                    disabled: isSubmitting
+                                },
+                                isSubmitting 
+                                    ? React.createElement(React.Fragment, null, 
+                                        React.createElement('i', { className: 'fas fa-spinner fa-spin' }),
+                                        ' Sending...'
+                                      )
+                                    : React.createElement(React.Fragment, null,
+                                        React.createElement('i', { className: 'fas fa-paper-plane' }),
+                                        ' Send Message'
+                                      )
+                            )
+                        )
+                    )
+                )
+            );
+        };
+
+        // Footer Component
+        const Footer = () => {
+            return React.createElement(
+                'footer',
+                null,
+                React.createElement(
+                    'p',
+                    null,
+                    React.createElement('i', { className: 'fas fa-heart', style: { color: '#fbbf24' } }),
+                    ' © 2026 Bitlinux | Carlos De Uganda | Luzira, Kampala, Uganda ',
+                    React.createElement('i', { className: 'fas fa-code' }),
+                    ' Building digital solutions with passion'
+                )
+            );
+        };
+
+        // Floating Buttons Component
+        const FloatingButtons = () => {
+            return React.createElement(
+                React.Fragment,
+                null,
+                React.createElement(
+                    'div',
+                    { 
+                        className: 'whatsapp',
+                        onClick: () => window.open('https://wa.me/+256707071929', '_blank')
+                    },
+                    React.createElement('i', { className: 'fab fa-whatsapp' })
+                ),
+                React.createElement(
+                    'div',
+                    { 
+                        className: 'phone',
+                        onClick: () => window.location.href = 'tel:+256707071929'
+                    },
+                    React.createElement('i', { className: 'fas fa-phone-alt' })
+                )
+            );
+        };
+
+        // Main App Component
+        const App = () => {
+            const [activeSection, setActiveSection] = useState('home');
+
+            const handleNavClick = (sectionId) => {
+                setActiveSection(sectionId);
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+
+            const handleViewWork = () => {
+                const element = document.getElementById('projects');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+
+            const handleContact = () => {
+                const element = document.getElementById('contact');
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            };
+
+            // Update active section on scroll
+            useEffect(() => {
+                const handleScroll = () => {
+                    const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+                    const scrollPos = window.scrollY + 150;
+
+                    for (const sectionId of sections) {
+                        const element = document.getElementById(sectionId);
+                        if (element) {
+                            const top = element.offsetTop;
+                            const bottom = top + element.offsetHeight;
+                            if (scrollPos >= top && scrollPos < bottom) {
+                                setActiveSection(sectionId);
+                                break;
+                            }
+                        }
+                    }
+                };
+
+                window.addEventListener('scroll', handleScroll);
+                return () => window.removeEventListener('scroll', handleScroll);
+            }, []);
+
+            const details = [
+                { icon: 'fas fa-user', label: 'Brand Name', value: 'Carlos De Uganda' },
+                { 
+                    icon: 'fas fa-map-pin', 
+                    label: 'Location', 
+                    value: React.createElement(
+                        'a',
+                        { href: 'https://maps.google.com/?q=Luzira+Kampala+Uganda', target: '_blank' },
+                        React.createElement('i', { className: 'fas fa-location-dot' }),
+                        ' Luzira, Kampala, Uganda'
+                    )
+                },
+                { icon: 'fas fa-graduation-cap', label: 'Journey', value: 'Self-Taught Programmer' }
+            ];
+
+            return React.createElement(
+                React.Fragment,
+                null,
+                React.createElement(Navbar, { activeSection, onNavClick: handleNavClick }),
+                React.createElement(Hero, { 
+                    name: portfolioData.displayName, 
+                    quotes: portfolioData.quotes,
+                    onViewWork: handleViewWork,
+                    onContact: handleContact
+                }),
+                React.createElement(About, { 
+                    about: portfolioData.about, 
+                    stats: portfolioData.stats,
+                    details: details
+                }),
+                React.createElement(Skills, { skills: portfolioData.skills }),
+                React.createElement(Projects, { projects: portfolioData.projects }),
+                React.createElement(Contact, null),
+                React.createElement(Footer, null),
+                React.createElement(FloatingButtons, null)
+            );
+        };
+
+        // Mount React App
+        const container = document.getElementById('root');
+        ReactDOM.render(React.createElement(App), container);
+    </script>
+</body>
+   </html>
+       
